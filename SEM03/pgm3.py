@@ -16,6 +16,9 @@ if n1>n2:
             menor = n2
 else:
     if n1>n3:
+        if n2>n3:
+            menor = 3
+            meio = 2
         
     else:
         menor = n1
