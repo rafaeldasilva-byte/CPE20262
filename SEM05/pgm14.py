@@ -7,7 +7,7 @@ n = int(input("Digite um produto de um primo: "))
 p = 0
 q = 0
 
-for m in range (2, int(sqrt(n))):
+for m in range (2, sqrt(n)):
     if n % m == 0:
         p=m
         q=n//m

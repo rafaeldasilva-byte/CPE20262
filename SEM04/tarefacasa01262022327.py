@@ -8,8 +8,8 @@ import sys
 #Declaração de variáveis
 w1 = 0.01 #glicose
 w2 = 0.01 #idade
-b = -0.5 #viés
-n = 0.01 #taxa de aprendizado
+b = -2.0 #viés
+n = 0.0001 #taxa de aprendizado
 amostra = 1
 
 #Apresentação da Fase 1
