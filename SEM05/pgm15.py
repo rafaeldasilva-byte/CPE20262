@@ -7,16 +7,16 @@ from random import randint
 crc1 = 0
 ruido = randint(0,10)
 
-n0 = 80
-n1 = 56
-n2 = 67
-n3 = 40
-n4 = 25
-n5 = 68
-n6 = 31
-n7 = 94
-n8 = 18
-n9 = 73
+n0 = int(input("Primeiro número de leitura: "))
+n1 = int(input("Seguno número de leitura: "))
+n2 = int(input("Terceiro número de leitura: "))
+n3 = int(input("Quarto número de leitura: "))
+n4 = int(input("Quinto número de leitura: "))
+n5 = int(input("Sexto número de leitura: "))
+n6 = int(input("Sétimo número de leitura: "))
+n7 = int(input("Oitavo número de leitura: "))
+n8 = int(input("Nono número de leitura: "))
+n9 = int(input("Décimo número de leitura: "))
 
 print(f"=== ENVIADO ===\n{n0} - {n1} - {n2} - {n3} - {n4} - {n5} - {n6} - {n7} - {n8} - {n9}")
 
@@ -33,34 +33,24 @@ crc1 = (crc1 * 3 - n9) % 97
 
 if ruido == 1:
     n0 = 1
-    erro = n0
 elif ruido == 2:
     n1 = 2
-    erro = n1
 elif ruido == 3:
     n2 = 3
-    erro = n2
 elif ruido == 4:
     n3 = 4
-    erro = n3
 elif ruido == 5:
     n4 = 5
-    erro = n4
 elif ruido == 6:
     n5 = 6
-    erro = n5
 elif ruido == 7:
     n6 = 7
-    erro = n6
 elif ruido == 8:
     n7 = 8
-    erro = n7
 elif ruido == 9:
     n8 = 9
-    erro = n8
 elif ruido == 10:
     n9 = 10
-    erro = n9
 
 print(f"CRC enviado = {crc1}\n")
 
@@ -80,4 +70,7 @@ crc2 = (crc2 * 3 - n9) % 97
 
 print(f"CRC recebido = {crc2}")
 if not crc1 == crc2:
-    print(f"\n⚠️  ERRO DE TRANSMISSÃO DETECTADO!\nOcorreu interferência no canal! O dado na posição {erro} foi corrompido.")
+    print(f"\n⚠️  ERRO DE TRANSMISSÃO DETECTADO!\nOcorreu interferência no canal! O dado na posição {ruido} foi corrompido.")
+else:
+    print(f"\n✅  TRANSMISSÃO BEM SUCEDIDA!\nO dado foi transmitido com sucesso, sem interferência no canal.")
+
