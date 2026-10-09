@@ -71,7 +71,7 @@ while True:
             exit()
         case _:
             print("Digite uma opção válida.")
-
+os.system("pause")
     
 
 
