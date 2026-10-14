@@ -22,6 +22,7 @@ coordenadas = [
 
 windspeed = []
 winddirection = []
+pontos = ["Leste", "Nordeste","Norte","Noroeste","Oeste","Sudoeste","Sul","Sudeste"]
 
 for i in range(len(capitais)):
     lat = coordenadas[i][0] 
@@ -31,29 +32,42 @@ for i in range(len(capitais)):
     resposta = urllib.request.urlopen(url)
     texto = resposta.read().decode("utf-8")
 
-    #print(texto)
-    #os.system("pause")
+    # Barra de carregamento
+    print("[",end="")
+    for j in range(i+1):
+        print ("=",end="")
+    print(">",end="")
+    for k in range(len(capitais)-(i+1)):
+        print("-",end="")
+    print("] ",end="")
+    print( (i+1)*(100//len(capitais)), "%",sep="")
+
+    
+
     resposta = urllib.request.urlopen(url)
     texto = resposta.read().decode("utf-8")
     parte1 = texto.split('"windspeed":"km/h"')[1]
     parte2 = texto.split('"winddirection":"°"')[1]
     parte1 = parte1.split('"windspeed":')[1]
     parte2 = parte2.split('"winddirection":')[1]
-    valor_winddirection = parte2.split(',')[0]
-    valor_windspeed = parte1.split(',')[0]
-    windspeed.append(float(valor_windspeed))
-    winddirection.append(float(valor_winddirection))
+    valor_winddirection = float(parte2.split(',')[0])
+    valor_windspeed = float(parte1.split(',')[0])
+
+    #Verificação da posição dentro da lista de pontos
+    if (valor_winddirection/45) - (valor_winddirection//45)  >= 0.5:
+        valor_winddirection = (valor_winddirection//45) + 1
+    else:
+        valor_winddirection = valor_winddirection//45
+
+    windspeed.append(valor_windspeed)
+    winddirection.append(int(valor_winddirection))
     #print(valor_windspeed)
     #print(valor_winddirection)
-
-if winddirection/45:
-    #Analisar o 
-
-    
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 print ("--- VELOCIDADE DOS VENTOS E SUAS DIREÇÕES ---\n")
 for i in range(len(capitais)):
-    print(capitais[i], ":", windspeed[i], "km/h", "-", winddirection[i])
+    print(capitais[i], ":", windspeed[i], "km/h", "-", pontos[winddirection[i]])
 
 speed_max = max(windspeed)
 posicao_max = windspeed.index(speed_max)
