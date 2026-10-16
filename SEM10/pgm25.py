@@ -22,7 +22,7 @@ coordenadas = [
 
 windspeed = []
 winddirection = []
-pontos = ["Leste", "Nordeste","Norte","Noroeste","Oeste","Sudoeste","Sul","Sudeste"]
+pontos = ["Norte","Nordeste","Leste","Sudeste","Sul","Sudoeste","Oeste","Noroeste"]
 
 for i in range(len(capitais)):
     lat = coordenadas[i][0] 
@@ -43,7 +43,6 @@ for i in range(len(capitais)):
     print( (i+1)*(100//len(capitais)), "%",sep="")
 
     
-
     resposta = urllib.request.urlopen(url)
     texto = resposta.read().decode("utf-8")
     parte1 = texto.split('"windspeed":"km/h"')[1]
@@ -53,11 +52,8 @@ for i in range(len(capitais)):
     valor_winddirection = float(parte2.split(',')[0])
     valor_windspeed = float(parte1.split(',')[0])
 
-    #Verificação da posição dentro da lista de pontos
-    if (valor_winddirection/45) - (valor_winddirection//45)  >= 0.5:
-        valor_winddirection = (valor_winddirection//45) + 1
-    else:
-        valor_winddirection = valor_winddirection//45
+
+    valor_winddirection = ((valor_winddirection + 22.5)//45)%8
 
     windspeed.append(valor_windspeed)
     winddirection.append(int(valor_winddirection))
